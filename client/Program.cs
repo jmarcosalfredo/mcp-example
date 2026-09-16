@@ -1,5 +1,8 @@
 ﻿using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
+using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OllamaSharp;
 
 var transport = new StdioClientTransport(new StdioClientTransportOptions
 {
@@ -9,10 +12,10 @@ var transport = new StdioClientTransport(new StdioClientTransportOptions
 
 try
 {
-    await using var client = await McpClient.CreateAsync(transport);
+    await using var mcpClient = await McpClient.CreateAsync(transport);
     Console.WriteLine("Client successfully connected to server.");
 
-    _ = client.Completion.ContinueWith((task) =>
+    _ = mcpClient.Completion.ContinueWith((task) =>
     {
         var details = task.Result;
         Console.WriteLine("\n ===== Connection Completion Details =====");
@@ -39,69 +42,32 @@ try
         Console.WriteLine("\n====================================");
     }, TaskScheduler.Default);
 
-    async Task CallToolWithHandlingAsync(string toolName, Dictionary<string, object?> parameters)
-    {
-        try
+    var mapTools = await mcpClient.ListToolsAsync();
+    Console.WriteLine(mapTools);
+
+    IChatClient ollamaClient = new OllamaApiClient(new Uri("http://localhost:11434"), "granite4.1:3b");
+
+    AIAgent agent = ollamaClient
+        .AsBuilder()
+        .UseFunctionInvocation()
+        .BuildAIAgent(new ChatClientAgentOptions
         {
-            Console.WriteLine($"\nCalling Tool: '{toolName}'");
-            Console.WriteLine($"\nParameters: '{string.Join(", ", parameters.Select(p => $"{p.Key} = {p.Value}"))}'");
-            var response = await client.CallToolAsync(toolName, parameters);
-            if (response.IsError == true)
+            Name = "Agente Corinthiano",
+            ChatOptions = new ChatOptions
             {
-                Console.WriteLine($"\nTool call failed.");
-
-                if (response.Content != null)
-                {
-                    foreach (var content in response.Content)
-                    {
-                        if (content is TextContentBlock textBlock)
-                        {
-                            Console.WriteLine($"\nResult: {textBlock.Text}");
-                        }
-                    }
-                }
+                Instructions = "You are an helpfull assistant. Only use the available tool to fullfill user requests",
+                Tools = [.. mapTools]
             }
-            else
-            {
-                Console.WriteLine($"\nTool call succeeded.");
+        });
 
-                foreach (var content in response.Content)
-                {
-                    if (content is TextContentBlock textBlock)
-                    {
-                        Console.WriteLine($"\nResult: {textBlock.Text}");
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error while calling tool '{toolName}': {ex.GetType().Name} - {ex.Message}");
-        }
-    }
+    Console.WriteLine("\nInvoking agent...");
+    var session = await agent.CreateSessionAsync();
 
-    await CallToolWithHandlingAsync("echo", new Dictionary<string, object?>
-    {
-        { "message", "\nHello, World!" },
-        { "prefix", "\nClient Server:" },
-        { "repeatCount", 3 }
-    });
+    var result = await agent.RunAsync("Echo the message 'Hello Agent Framework!' with the prefix 'MCP' and repeat count 3", session);
+    Console.WriteLine($"Agent response: {result}");
 
-    await CallToolWithHandlingAsync("echo", new Dictionary<string, object?>
-    {
-        { "message", "\nHello, World!" },
-    });
-
-    await CallToolWithHandlingAsync("echo", new Dictionary<string, object?> //Error example
-    {
-        { "message", 12345 },
-    });
-
-    await CallToolWithHandlingAsync("echo", new Dictionary<string, object?> //Error example
-    {
-        { "message", "\nHello, World!" },
-        { "repeatCount", -1 }
-    });
+    result = await agent.RunAsync("What is the currente date and time?", session);
+    Console.WriteLine($"Agent response: {result}");
 }
 catch (Exception ex)
 {
