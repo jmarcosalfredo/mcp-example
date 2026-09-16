@@ -12,6 +12,33 @@ try
     await using var client = await McpClient.CreateAsync(transport);
     Console.WriteLine("Client successfully connected to server.");
 
+    _ = client.Completion.ContinueWith((task) =>
+    {
+        var details = task.Result;
+        Console.WriteLine("\n ===== Connection Completion Details =====");
+
+        if (details.Exception != null)
+        {
+            Console.WriteLine($"Exception: {details.Exception.GetType().Name}");
+            Console.WriteLine($"Exception Message: {details.Exception.Message}");
+        }
+        else
+        {
+            Console.WriteLine("Closure: Graceful (no exception!)");
+        }
+
+        if (details is StdioClientCompletionDetails stdioDetails)
+        {
+            Console.WriteLine($"Process ID: {stdioDetails.ProcessId}");
+            Console.WriteLine($"Exit Code: {stdioDetails.ExitCode}");
+            if (stdioDetails.StandardErrorTail is { Count: > 0 })
+            {
+                Console.WriteLine($"Sterr Tail: {string.Join(Environment.NewLine, stdioDetails.StandardErrorTail)}");
+            }
+        }
+        Console.WriteLine("\n====================================");
+    }, TaskScheduler.Default);
+
     async Task CallToolWithHandlingAsync(string toolName, Dictionary<string, object?> parameters)
     {
         try
