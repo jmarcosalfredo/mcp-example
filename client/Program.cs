@@ -76,7 +76,7 @@ try
     Console.WriteLine("\nInvoking agent...");
     var session = await agent.CreateSessionAsync();
 
-    var result = await agent.RunAsync("Echo the message 'Hello Agent Framework!' with the prefix 'MCP' and repeat count 3", session);
+    var result = await agent.RunAsync("Normalize this text for me to uppercase using the mcp tool that you have, and then tell me the text lenght, the text is: 'I'am a fanatic Corinthians fan, and would like to see my team win!'", session);
     Console.WriteLine($"Agent response: {result}");
 
     result = await agent.RunAsync("What is the currente date and time?", session);
