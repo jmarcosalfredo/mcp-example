@@ -37,5 +37,10 @@ C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsof
 C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.VectorData.Abstractions.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.ML.Tokenizers.dll
-C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\OllamaSharp.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\System.Numerics.Tensors.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Anthropic.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.Configuration.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\client\bin\Debug\net10.0\Microsoft.Extensions.FileProviders.Physical.dll

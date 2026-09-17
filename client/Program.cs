@@ -2,7 +2,8 @@
 using ModelContextProtocol.Protocol;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using OllamaSharp;
+using Microsoft.Extensions.Configuration;
+using Anthropic;
 
 var transport = new StdioClientTransport(new StdioClientTransportOptions
 {
@@ -42,12 +43,24 @@ try
         Console.WriteLine("\n====================================");
     }, TaskScheduler.Default);
 
+    var config = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .Build();
+
+    var apiKey = config["Anthropic:ApiKey"]
+    ?? throw new InvalidOperationException("Key 'Anthropic:ApiKey' not found! Anthropic API Key must be in user-secrets.");
+
+    Environment.SetEnvironmentVariable("ANTHROPIC_API_KEY", apiKey);
+
     var mapTools = await mcpClient.ListToolsAsync();
-    Console.WriteLine(mapTools);
+    foreach (var tool in mapTools)
+    {
+        Console.WriteLine($"- {tool.Name}: {tool.Description}");
+    }
 
-    IChatClient ollamaClient = new OllamaApiClient(new Uri("http://localhost:11434"), "granite4.1:3b");
+    IChatClient claudeClient = new AnthropicClient().AsIChatClient("claude-haiku-4-5-20251001");
 
-    AIAgent agent = ollamaClient
+    AIAgent agent = claudeClient
         .AsBuilder()
         .UseFunctionInvocation()
         .BuildAIAgent(new ChatClientAgentOptions

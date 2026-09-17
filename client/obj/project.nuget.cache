@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "lYgFoKmSznc=",
+  "dgSpecHash": "34hyqdb4J4s=",
   "success": true,
   "projectFilePath": "C:\\Users\\joao_\\Documents\\Projetos\\my-first-mcp\\client\\client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\joao_\\.nuget\\packages\\anthropic\\12.48.0\\anthropic.12.48.0.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\google.protobuf\\3.30.2\\google.protobuf.3.30.2.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.agents.ai\\1.21.0\\microsoft.agents.ai.1.21.0.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.agents.ai.abstractions\\1.21.0\\microsoft.agents.ai.abstractions.1.21.0.nupkg.sha512",
@@ -12,10 +13,15 @@
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.ai.evaluation\\10.10.0\\microsoft.extensions.ai.evaluation.10.10.0.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.12\\microsoft.extensions.caching.abstractions.10.0.12.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.compliance.abstractions\\10.10.0\\microsoft.extensions.compliance.abstractions.10.10.0.nupkg.sha512",
-    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.10\\microsoft.extensions.configuration.abstractions.10.0.10.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.12\\microsoft.extensions.configuration.10.0.12.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.12\\microsoft.extensions.configuration.abstractions.10.0.12.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\10.0.12\\microsoft.extensions.configuration.fileextensions.10.0.12.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration.json\\10.0.12\\microsoft.extensions.configuration.json.10.0.12.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.configuration.usersecrets\\10.0.12\\microsoft.extensions.configuration.usersecrets.10.0.12.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.12\\microsoft.extensions.dependencyinjection.abstractions.10.0.12.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\10.0.10\\microsoft.extensions.diagnostics.abstractions.10.0.10.nupkg.sha512",
-    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\10.0.10\\microsoft.extensions.fileproviders.abstractions.10.0.10.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\10.0.12\\microsoft.extensions.fileproviders.abstractions.10.0.12.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\10.0.12\\microsoft.extensions.fileproviders.physical.10.0.12.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\10.0.12\\microsoft.extensions.filesystemglobbing.10.0.12.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\10.0.10\\microsoft.extensions.hosting.abstractions.10.0.10.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.12\\microsoft.extensions.logging.abstractions.10.0.12.nupkg.sha512",
@@ -26,7 +32,6 @@
     "C:\\Users\\joao_\\.nuget\\packages\\microsoft.ml.tokenizers\\2.0.0\\microsoft.ml.tokenizers.2.0.0.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\modelcontextprotocol\\2.2.0\\modelcontextprotocol.2.2.0.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\modelcontextprotocol.core\\2.2.0\\modelcontextprotocol.core.2.2.0.nupkg.sha512",
-    "C:\\Users\\joao_\\.nuget\\packages\\ollamasharp\\5.4.30\\ollamasharp.5.4.30.nupkg.sha512",
     "C:\\Users\\joao_\\.nuget\\packages\\system.numerics.tensors\\10.0.12\\system.numerics.tensors.10.0.12.nupkg.sha512"
   ],
   "logs": []
