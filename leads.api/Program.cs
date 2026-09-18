@@ -1,6 +1,8 @@
 using leads.api.Configurations;
 using leads.api.Repositories;
 using leads.api.Repositories.Implementations;
+using leads.api.Services;
+using leads.api.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDatabaseConfig(builder.Configuration);
 builder.Services.AddScoped<ILeadRepository, LeadRepository>();
+builder.Services.AddScoped<ILeadService, LeadService>();
 
 var app = builder.Build();
 

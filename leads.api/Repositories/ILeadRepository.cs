@@ -8,7 +8,7 @@ namespace leads.api.Repositories
 {
     public interface ILeadRepository
     {
-        Task<IEnumerable<Lead>> GetAsync();
+        Task<IEnumerable<Lead>> GetAllAsync();
         Task<Lead> GetByIdAsync(int id);
         Task<Lead> CreateAsync(Lead lead);
         Task<Lead> UpdateAsync(Lead lead);

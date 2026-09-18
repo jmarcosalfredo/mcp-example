@@ -17,7 +17,7 @@ namespace leads.api.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<IEnumerable<Lead>> GetAsync()
+        public async Task<IEnumerable<Lead>> GetAllAsync()
         {
             return await _context.Leads.AsNoTracking().ToListAsync();
         }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("leads.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5a1bb9ab17c5edc8a54ed747a5c89fa6dc6301b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a5dbb4352effe0857da60db09ffc5a74bd40daa")]
 [assembly: System.Reflection.AssemblyProductAttribute("leads.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("leads.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
