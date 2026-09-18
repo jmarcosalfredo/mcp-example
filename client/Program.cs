@@ -76,10 +76,7 @@ try
     Console.WriteLine("\nInvoking agent...");
     var session = await agent.CreateSessionAsync();
 
-    var result = await agent.RunAsync("Normalize this text for me to uppercase using the mcp tool that you have, and then tell me the text lenght, the text is: 'I'am a fanatic Corinthians fan, and would like to see my team win!'", session);
-    Console.WriteLine($"Agent response: {result}");
-
-    result = await agent.RunAsync("What is the currente date and time?", session);
+    var result = await agent.RunAsync("Use the LeadsTool tool to register a new lead named Maria, her email is maria@gmail.com, her phone number is 9999999, and she answers 'yes' to both proposed conditions.", session);
     Console.WriteLine($"Agent response: {result}");
 }
 catch (Exception ex)

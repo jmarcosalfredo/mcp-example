@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using mcp.HttpFactory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,8 @@ builder.Logging.AddConsole(options =>
     options.LogToStandardErrorThreshold = LogLevel.Trace;
 }
 );
+
+builder.Services.AddLeadsHttpFactory();
 
 builder.Services
     .AddMcpServer()

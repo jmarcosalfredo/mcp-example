@@ -55,6 +55,10 @@
               "target": "Package",
               "version": "[10.0.12, )"
             },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
             "ModelContextProtocol": {
               "target": "Package",
               "version": "[2.2.0, )"
