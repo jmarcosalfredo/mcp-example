@@ -12,7 +12,7 @@ namespace leads.api.Services
         Task<ResponseModel<Lead>> FindByIdAsync(int id);
         Task<ResponseModel<List<Lead>>> FindAllAsync();
         Task<ResponseModel<Lead>> CreateAsync(Lead lead);
-        Task<ResponseModel<Lead>> UpdateAsync(Lead lead);
+        Task<ResponseModel<Lead>> UpdateAsync(int id, Lead lead);
         Task<ResponseModel<bool>> DeleteAsync(int id);
     }
 }

@@ -63,10 +63,15 @@ namespace leads.api.Services.Implementations
             }
         }
 
-        public async Task<ResponseModel<Lead>> UpdateAsync(Lead lead)
+        public async Task<ResponseModel<Lead>> UpdateAsync(int id, Lead lead)
         {
             try
             {
+                if (id != lead.LeadId)
+                {
+                    return ResponseModel<Lead>.WithFail("The id's must match!");
+                }
+
                 var leadToUpdate = await _repository.GetByIdAsync(lead.LeadId);
 
                 if (leadToUpdate == null)

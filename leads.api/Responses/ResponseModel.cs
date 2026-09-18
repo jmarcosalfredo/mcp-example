@@ -16,6 +16,7 @@ namespace leads.api.Responses
         {
             var response = new ResponseModel<T>()
             {
+                Success = true,
                 Data = data,
                 Message = message
             };
