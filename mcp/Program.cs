@@ -18,6 +18,7 @@ builder.Services.AddLeadsHttpFactory();
 builder.Services
     .AddMcpServer()
     .WithStdioServerTransport()
-    .WithToolsFromAssembly();
+    .WithToolsFromAssembly()
+    .WithResourcesFromAssembly();
 
 await builder.Build().RunAsync();

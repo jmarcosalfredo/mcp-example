@@ -50,3 +50,4 @@ C:\Users\joao_\Documents\Projetos\my-first-mcp\mcp\obj\Debug\net10.0\mcp.genrunt
 C:\Users\joao_\Documents\Projetos\my-first-mcp\mcp\obj\Debug\net10.0\ref\mcp.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\mcp\obj\Debug\net10.0\mcp.sourcelink.json
 C:\Users\joao_\Documents\Projetos\my-first-mcp\mcp\bin\Debug\net10.0\Microsoft.Extensions.Http.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\mcp\bin\Debug\net10.0\Newtonsoft.Json.dll

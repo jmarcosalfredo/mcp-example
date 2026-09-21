@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.Extensions.Hosting": "10.0.12",
           "Microsoft.Extensions.Http": "10.0.12",
-          "ModelContextProtocol": "2.2.0"
+          "ModelContextProtocol": "2.2.0",
+          "Newtonsoft.Json": "13.0.4"
         },
         "runtime": {
           "mcp.dll": {}
@@ -436,6 +437,14 @@
           }
         }
       },
+      "Newtonsoft.Json/13.0.4": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.4.30916"
+          }
+        }
+      },
       "System.Diagnostics.EventLog/10.0.12": {
         "runtime": {
           "lib/net10.0/System.Diagnostics.EventLog.dll": {
@@ -689,6 +698,13 @@
       "sha512": "sha512-FeBfXU6T8k+jw4afg4sfxdEX2rL/e5oKOk9ROOGztu9k47+7Bz08sdaToYt2XvMY1opNbwxYQOFMj6wH9TInhA==",
       "path": "modelcontextprotocol.core/2.2.0",
       "hashPath": "modelcontextprotocol.core.2.2.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pdgNNMai3zv51W5aq268sujXUyx7SNdE2bj1wZcWjAQrKMFZV260lbqYop1d2GM67JI1huLRwxo9ZqnfF/lC6A==",
+      "path": "newtonsoft.json/13.0.4",
+      "hashPath": "newtonsoft.json.13.0.4.nupkg.sha512"
     },
     "System.Diagnostics.EventLog/10.0.12": {
       "type": "package",
