@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel;
 using mcp.HttpFactory;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol.Server;
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.UseUrls("http://localhost:6006");
 
 builder.Logging.AddConsole(options =>
 {
@@ -15,11 +18,15 @@ builder.Logging.AddConsole(options =>
 
 builder.Services.AddLeadsHttpFactory();
 
-builder.Services
+var mcpBuilder = builder.Services
     .AddMcpServer()
-    .WithStdioServerTransport()
+    .WithHttpTransport()
     .WithToolsFromAssembly()
     .WithResourcesFromAssembly()
     .WithPromptsFromAssembly();
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+app.MapMcp("/mcp");
+
+await app.RunAsync();

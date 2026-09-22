@@ -5,43 +5,15 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Anthropic;
 
-var transport = new StdioClientTransport(new StdioClientTransportOptions
+var transport = new HttpClientTransport(new HttpClientTransportOptions
 {
-    Command = "dotnet",
-    Arguments = ["..\\mcp\\bin\\Debug\\net10.0\\mcp.dll",]
+    Endpoint = new Uri("http://localhost:6006/mcp")
 });
 
 try
 {
     await using var mcpClient = await McpClient.CreateAsync(transport);
     Console.WriteLine("Client successfully connected to server.");
-
-    _ = mcpClient.Completion.ContinueWith((task) =>
-    {
-        var details = task.Result;
-        Console.WriteLine("\n ===== Connection Completion Details =====");
-
-        if (details.Exception != null)
-        {
-            Console.WriteLine($"Exception: {details.Exception.GetType().Name}");
-            Console.WriteLine($"Exception Message: {details.Exception.Message}");
-        }
-        else
-        {
-            Console.WriteLine("Closure: Graceful (no exception!)");
-        }
-
-        if (details is StdioClientCompletionDetails stdioDetails)
-        {
-            Console.WriteLine($"Process ID: {stdioDetails.ProcessId}");
-            Console.WriteLine($"Exit Code: {stdioDetails.ExitCode}");
-            if (stdioDetails.StandardErrorTail is { Count: > 0 })
-            {
-                Console.WriteLine($"Sterr Tail: {string.Join(Environment.NewLine, stdioDetails.StandardErrorTail)}");
-            }
-        }
-        Console.WriteLine("\n====================================");
-    }, TaskScheduler.Default);
 
     var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
@@ -59,7 +31,7 @@ try
     }
 
     var mapResources = await mcpClient.ListResourcesAsync();
-    Console.WriteLine($"\nAvaible Prompts: {mapResources}");
+    Console.WriteLine($"\nAvaible Resources: {mapResources}");
     foreach (var resource in mapResources)
     {
         Console.WriteLine($"- {resource.Name}: {resource.Description}");
@@ -82,7 +54,7 @@ try
             Name = "Helpful Agent",
             ChatOptions = new ChatOptions
             {
-                Instructions = "You are an helpfull assistant. Only use the available tool to fullfill user requests",
+                Instructions = "You are an helpfull assistant. Only use the available tool to fullfill user requests. Always respond in Brazilian Portuguese, regardless of the language the user writes in.",
                 Tools = [.. mapTools]
             }
         });
@@ -90,14 +62,35 @@ try
     Console.WriteLine("\nInvoking agent...");
     var session = await agent.CreateSessionAsync();
 
-    var prompResult = await mcpClient.GetPromptAsync("analyze-leadcount");
+    var sellerPrompt = await mcpClient.GetPromptAsync("seller-analyzer");
 
-    var promptText = string.Join("\n", prompResult.Messages
-    .Select(m => (m.Content as TextContentBlock)?.Text)
-    .Where(text => !string.IsNullOrEmpty(text)));
+    var sellerPromptText = string.Join("\n", sellerPrompt.Messages
+        .Select(m => (m.Content as TextContentBlock)?.Text)
+        .Where(text => !string.IsNullOrEmpty(text)));
 
-    var resultTwo = await agent.RunAsync(promptText, session);
-    Console.WriteLine($"\nAgent response: {resultTwo}");
+    var greeting = await agent.RunAsync(sellerPromptText, session);
+    Console.WriteLine($"Agente: {greeting}\n");
+
+    Console.WriteLine("\nDigite 'sair' pra encerrar.\n");
+
+    while (true)
+    {
+        Console.Write("Você: ");
+        var input = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            continue;
+        }
+
+        if (input.Equals("sair", StringComparison.OrdinalIgnoreCase))
+        {
+            break;
+        }
+
+        var result = await agent.RunAsync(input, session);
+        Console.WriteLine($"Agente: {result}\n");
+    }
 }
 catch (Exception ex)
 {
