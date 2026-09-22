@@ -58,6 +58,20 @@ try
         Console.WriteLine($"- {tool.Name}: {tool.Description}");
     }
 
+    var mapResources = await mcpClient.ListResourcesAsync();
+    Console.WriteLine($"\nAvaible Prompts: {mapResources}");
+    foreach (var resource in mapResources)
+    {
+        Console.WriteLine($"- {resource.Name}: {resource.Description}");
+    }
+
+    var mapPrompts = await mcpClient.ListPromptsAsync();
+    Console.WriteLine($"\nAvaible Prompts: {mapPrompts}");
+    foreach (var prompt in mapPrompts)
+    {
+        Console.WriteLine($"- {prompt.Name}: {prompt.Description}");
+    }
+
     IChatClient claudeClient = new AnthropicClient().AsIChatClient("claude-haiku-4-5-20251001");
 
     AIAgent agent = claudeClient
@@ -65,7 +79,7 @@ try
         .UseFunctionInvocation()
         .BuildAIAgent(new ChatClientAgentOptions
         {
-            Name = "Agente Corinthiano",
+            Name = "Helpful Agent",
             ChatOptions = new ChatOptions
             {
                 Instructions = "You are an helpfull assistant. Only use the available tool to fullfill user requests",
@@ -76,8 +90,14 @@ try
     Console.WriteLine("\nInvoking agent...");
     var session = await agent.CreateSessionAsync();
 
-    var result = await agent.RunAsync("Use the LeadsTool tool to register a new lead named Maria, her email is maria@gmail.com, her phone number is 9999999, and she answers 'yes' to both proposed conditions.", session);
-    Console.WriteLine($"Agent response: {result}");
+    var prompResult = await mcpClient.GetPromptAsync("analyze-leadcount");
+
+    var promptText = string.Join("\n", prompResult.Messages
+    .Select(m => (m.Content as TextContentBlock)?.Text)
+    .Where(text => !string.IsNullOrEmpty(text)));
+
+    var resultTwo = await agent.RunAsync(promptText, session);
+    Console.WriteLine($"\nAgent response: {resultTwo}");
 }
 catch (Exception ex)
 {

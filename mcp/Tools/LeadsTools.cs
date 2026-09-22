@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using mcp.Entities;
 using mcp.HttpFactory;
+using mcp.Services;
 using ModelContextProtocol.Server;
 
 namespace mcp.Tools
@@ -14,33 +16,25 @@ namespace mcp.Tools
     {
         [McpServerTool, Description("Create a new lead in the system")]
         public static async Task<string> CreateLead(
-            IHttpClientFactory httpClientFactory,
+            LeadsService leadsService,
             [Description("The name of the lead")] string nomeCompleto,
             [Description("The email of the lead")] string email,
             [Description("The phone of the lead")] string telefone,
             [Description("Indicates if the first condition was met.")] bool condicaoUm,
             [Description("Indicates if the secound condition was met.")] bool condicaoDois)
         {
-            var client = httpClientFactory.CreateClient(LeadsHttpFactory.ClientName);
-
-            var lead = new
+            var request = new Lead
             {
-                NomeCompleto = nomeCompleto,
+                Name = nomeCompleto,
                 Email = email,
-                Telefone = telefone,
-                CondicaoUm = condicaoUm,
-                CondicaoDois = condicaoDois
+                PhoneNumber = telefone,
+                ConditionOne = condicaoUm,
+                ConditionTwo = condicaoDois
             };
 
-            var response = await client.PostAsJsonAsync("/Leads", lead);
-            var content = await response.Content.ReadAsStringAsync();
+            var (success, content) = await leadsService.CreateLeadAsync(request);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return $"Erro ao criar lead: {content}";
-            }
-
-            return content;
+            return success ? content : $"Erro ao criar lead: {content}";
         }
     }
 }
