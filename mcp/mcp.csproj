@@ -8,12 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.3.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
     <PackageReference Include="ModelContextProtocol.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Leads.Contracts\Leads.Contracts.csproj" />
+    <ProjectReference Include="..\leads.contracts\leads.contracts.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+  <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
 
 </Project>

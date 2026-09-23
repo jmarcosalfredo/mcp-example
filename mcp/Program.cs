@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using mcp.Configurations;
 using mcp.HttpFactory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ builder.Logging.AddConsole(options =>
 );
 
 builder.Services.AddLeadsHttpFactory();
+builder.Services.AddMessageBrokerConfig(builder.Configuration);
 
 var mcpBuilder = builder.Services
     .AddMcpServer()

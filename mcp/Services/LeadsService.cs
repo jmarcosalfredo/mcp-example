@@ -13,14 +13,6 @@ namespace mcp.Services
             _httpClient = httpClient;
         }
 
-        public async Task<(bool Success, string Content)> CreateLeadAsync(Lead lead)
-        {
-            var response = await _httpClient.PostAsJsonAsync("/Leads", lead);
-            var content = await response.Content.ReadAsStringAsync();
-
-            return (response.IsSuccessStatusCode, content);
-        }
-
         public async Task<int> LeadsCountAsync()
         {
             var response = await _httpClient.GetFromJsonAsync<ResponseModel<List<Lead>>>("/Leads");

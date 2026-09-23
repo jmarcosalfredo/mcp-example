@@ -15,6 +15,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDatabaseConfig(builder.Configuration);
 builder.Services.AddScoped<ILeadRepository, LeadRepository>();
 builder.Services.AddScoped<ILeadService, LeadService>();
+builder.Services.AddMessageBrokerConfig(builder.Configuration);
 
 var app = builder.Build();
 

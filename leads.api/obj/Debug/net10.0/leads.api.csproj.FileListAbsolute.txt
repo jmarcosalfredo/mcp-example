@@ -124,3 +124,9 @@ C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\obj\Debug\net10.0\ref\l
 C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\MassTransit.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\MassTransit.Abstractions.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\MassTransit.RabbitMqTransport.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\leads.contracts.dll
+C:\Users\joao_\Documents\Projetos\my-first-mcp\leads.api\bin\Debug\net10.0\leads.contracts.pdb
