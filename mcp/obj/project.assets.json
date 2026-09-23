@@ -252,6 +252,16 @@
             "related": ".xml"
           }
         }
+      },
+      "leads.contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/leads.contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/leads.contracts.dll": {}
+        }
       }
     }
   },
@@ -694,12 +704,18 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "leads.contracts/1.0.0": {
+      "type": "project",
+      "path": "../leads.contracts/leads.contracts.csproj",
+      "msbuildProject": "../leads.contracts/leads.contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "ModelContextProtocol.AspNetCore >= 2.2.0",
-      "Newtonsoft.Json >= 13.0.4"
+      "Newtonsoft.Json >= 13.0.4",
+      "leads.contracts >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -734,7 +750,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\joao_\\Documents\\Projetos\\my-first-mcp\\leads.contracts\\leads.contracts.csproj": {
+              "projectPath": "C:\\Users\\joao_\\Documents\\Projetos\\my-first-mcp\\leads.contracts\\leads.contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -36,11 +36,6 @@ namespace leads.api.Services.Implementations
             {
                 var result = await _repository.GetByIdAsync(id);
 
-                if (result == null)
-                {
-                    return ResponseModel<Lead>.WithFail("Lead not found!");
-                }
-
                 return ResponseModel<Lead>.WithSuccess(result, "Lead found with success!");
             }
             catch (Exception ex)
